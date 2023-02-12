@@ -20,7 +20,7 @@ public class ProductController {
         this.iProductService = iProductService;
     }
 
-    @PostMapping("/addProduct")
+    @PostMapping("/products")
     public Product addProduct(@RequestBody Product product) {
         Product productData = iProductService.saveProduct(product);
         if(productData==null) {
@@ -29,7 +29,7 @@ public class ProductController {
         return  productData;
     }
 
-    @PostMapping("/addProducts")
+    @PostMapping("/bulk/products")
     public List<Product> addProducts(@RequestBody List<Product> products) {
         List<Product> productList = iProductService.saveProducts(products);
 
@@ -49,7 +49,7 @@ public class ProductController {
         return  productList;
     }
 
-    @GetMapping("/productById/{id}")
+    @GetMapping("/products/{id}")
     public Product findProductById(@PathVariable int id) {
         Product productData = iProductService.getProductById(id);
 
@@ -60,7 +60,7 @@ public class ProductController {
 
     }
 
-    @GetMapping("/product/{name}")
+    @GetMapping("/products/name/{name}")
     public Product findProductByName(@PathVariable String name) {
         Product productData = iProductService.getProductByName(name);
 
@@ -70,7 +70,7 @@ public class ProductController {
         return  productData;
     }
 
-    @PutMapping("/update")
+    @PutMapping("/products")
     public Product updateProduct(@RequestBody Product product) {
         Product productData = iProductService.updateProduct(product);
         if(productData==null) {
@@ -80,7 +80,7 @@ public class ProductController {
 
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/products/{id}")
     public String deleteProduct(@PathVariable int id) {
         return iProductService.deleteProduct(id);
     }
